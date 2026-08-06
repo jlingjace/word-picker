@@ -19,14 +19,30 @@ if (!bank.version || !bank.themes || !Array.isArray(bank.words) || bank.words.le
 
 // 基本词条校验，坏一条就中止，避免把脏数据发出去
 const LEVELS = new Set(['A2', 'B1', 'B2']);
+const MAX_WORDS_PER_SENTENCE = 20;
+const MAX_WORDS_PER_DEF = 14;
 for (const w of bank.words) {
   const problems = [];
   if (!w.en || typeof w.en !== 'string') problems.push('en 缺失');
   if (!w.zh) problems.push('zh 缺失');
   if (!bank.themes[w.theme]) problems.push('theme 未在 themes 中声明: ' + w.theme);
   if (!LEVELS.has(w.level)) problems.push('level 非法: ' + w.level);
-  if (!Array.isArray(w.frames) || w.frames.length < 1) problems.push('frames 缺失');
-  if (!w.def) problems.push('def 缺失');
+  if (!Array.isArray(w.sentences) || w.sentences.length < 2) {
+    problems.push('sentences 需要 2 句可直接朗读的完整句');
+  } else {
+    // 句子必须是完整可朗读的：不允许留下 ___ 之类的填空占位符
+    for (const s of w.sentences) {
+      if (/_{2,}|\[|\]/.test(s)) problems.push('sentences 里还有填空占位符: ' + s);
+      const n = s.trim().split(/\s+/).length;
+      if (n > MAX_WORDS_PER_SENTENCE) problems.push('句子过长（' + n + ' 词，朗读困难）: ' + s);
+    }
+  }
+  if (!w.def) {
+    problems.push('def 缺失');
+  } else {
+    const n = w.def.trim().split(/\s+/).length;
+    if (n > MAX_WORDS_PER_DEF) problems.push('def 过长（' + n + ' 词，应尽量简短易读）: ' + w.def);
+  }
   if (problems.length) {
     console.error('词条不合法 [' + (w.en || '?') + ']: ' + problems.join('; '));
     process.exit(1);
@@ -44,22 +60,30 @@ for (const w of bank.words) {
   seen.add(k);
 }
 
-// 答案泄露检查：frames / def / colloc / taboo 不得包含目标词及常见变形
+// 答案泄露检查：句子和定义都会被玩家直接朗读，绝不能出现目标词及其变形
 const escRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 for (const w of bank.words) {
   const en = w.en.toLowerCase();
-  const forms = [en, en + 's', en + 'es', en + 'ed', en + 'd', en + 'ing'];
-  if (en.endsWith('e')) forms.push(en.slice(0, -1) + 'ing');
-  const re = new RegExp('\\b(' + forms.map(escRe).join('|') + ')\\b', 'i');
+  const forms = new Set([en, en + 's', en + 'es', en + 'ed', en + 'd', en + 'ing', en + 'er', en + 'ers']);
+  if (en.endsWith('e')) {
+    forms.add(en.slice(0, -1) + 'ing');
+    forms.add(en.slice(0, -1) + 'ed');
+  }
+  if (en.endsWith('y')) {
+    forms.add(en.slice(0, -1) + 'ies');
+    forms.add(en.slice(0, -1) + 'ied');
+  }
+  // 多词短语（parking lot）逐词也要挡
+  for (const part of en.split(/\s+/)) if (part.length > 3) forms.add(part);
+  const re = new RegExp('\\b(' + [...forms].map(escRe).join('|') + ')\\b', 'i');
   const fields = {
-    frames: (w.frames || []).join(' | '),
+    sentences: (w.sentences || []).join(' | '),
     def: w.def || '',
-    colloc: (w.colloc || []).join(', '),
-    taboo: (w.taboo || []).join(', '),
   };
   for (const [field, text] of Object.entries(fields)) {
-    if (re.test(text)) {
-      console.error('答案泄露 [' + w.en + '] 出现在 ' + field + ': ' + text);
+    const m = re.exec(text);
+    if (m) {
+      console.error('答案泄露 [' + w.en + '] 在 ' + field + ' 里出现 "' + m[1] + '": ' + text);
       process.exit(1);
     }
   }
