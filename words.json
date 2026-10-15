@@ -1,6 +1,6 @@
 {
-  "version": "2026-08-06",
-  "updated": "2026-08-06",
+  "version": "2026-10-15",
+  "updated": "2026-10-15",
   "themes": {
     "office": {
       "label": "🏢 办公职场"
@@ -3651,6 +3651,186 @@
         "Shirts get small lines all over them when you leave them in a bag."
       ],
       "def": "covered with many small lines and folds"
+    },
+    {
+      "en": "printer",
+      "zh": "打印机",
+      "theme": "office",
+      "level": "A2",
+      "pos": "noun",
+      "sentences": [
+        "You use it to put words from your computer onto paper.",
+        "You often see this machine in the office next to the big desks."
+      ],
+      "def": "a machine that puts words on paper"
+    },
+    {
+      "en": "calendar",
+      "zh": "日历",
+      "theme": "office",
+      "level": "A2",
+      "pos": "noun",
+      "sentences": [
+        "It shows all the days and months of the year.",
+        "You look at it to find the date or to plan a meeting."
+      ],
+      "def": "a list of all the days in a year"
+    },
+    {
+      "en": "embarrassed",
+      "zh": "尴尬的",
+      "theme": "emotion",
+      "level": "B1",
+      "pos": "adj",
+      "sentences": [
+        "People feel this when they do something silly and many people see it.",
+        "Your face often turns red when you feel like this."
+      ],
+      "def": "feeling shy and bad after a silly mistake"
+    },
+    {
+      "en": "lonely",
+      "zh": "孤独的",
+      "theme": "emotion",
+      "level": "A2",
+      "pos": "adj",
+      "sentences": [
+        "People feel this when they are alone and want someone to talk to.",
+        "You may feel this in a new city where you know nobody."
+      ],
+      "def": "sad because you have nobody with you"
+    },
+    {
+      "en": "ruler",
+      "zh": "尺子",
+      "theme": "objects",
+      "level": "A2",
+      "pos": "noun",
+      "sentences": [
+        "You use it to draw a straight line on paper.",
+        "It is a long, flat tool with numbers on the side to measure small things."
+      ],
+      "def": "a flat tool for drawing lines and measuring"
+    },
+    {
+      "en": "toothbrush",
+      "zh": "牙刷",
+      "theme": "objects",
+      "level": "A2",
+      "pos": "noun",
+      "sentences": [
+        "You use it every morning and every night in the bathroom.",
+        "It has a small handle and soft hair, and you put paste on it."
+      ],
+      "def": "a small brush for your teeth"
+    },
+    {
+      "en": "chef",
+      "zh": "厨师",
+      "theme": "jobs",
+      "level": "A2",
+      "pos": "noun",
+      "sentences": [
+        "This person makes food in a restaurant kitchen.",
+        "This person wears a tall white hat and makes many dishes for guests."
+      ],
+      "def": "a person who makes food in a restaurant"
+    },
+    {
+      "en": "carpenter",
+      "zh": "木匠",
+      "theme": "jobs",
+      "level": "B1",
+      "pos": "noun",
+      "sentences": [
+        "This person makes tables, doors, and chairs from wood.",
+        "This person uses a saw and a hammer to build things for your house."
+      ],
+      "def": "a person who makes things from wood"
+    },
+    {
+      "en": "climb",
+      "zh": "爬",
+      "theme": "actions",
+      "level": "A2",
+      "pos": "verb",
+      "sentences": [
+        "You do this when you go up a tall mountain or a tree.",
+        "People use their hands and feet to do this on a high wall."
+      ],
+      "def": "to go up something high"
+    },
+    {
+      "en": "borrow",
+      "zh": "借入",
+      "theme": "actions",
+      "level": "B1",
+      "pos": "verb",
+      "sentences": [
+        "You do this when you take a book from a friend and plan to give it back.",
+        "You can do this at a library, but you must return the thing later."
+      ],
+      "def": "to take something and give it back later"
+    },
+    {
+      "en": "restaurant",
+      "zh": "餐厅",
+      "theme": "places",
+      "level": "A2",
+      "pos": "noun",
+      "sentences": [
+        "You go to this place to eat a meal that someone else makes.",
+        "A waiter brings you a menu, and you pay when you finish."
+      ],
+      "def": "a place where you pay to eat meals"
+    },
+    {
+      "en": "bus stop",
+      "zh": "公交站",
+      "theme": "places",
+      "level": "A2",
+      "pos": "noun",
+      "sentences": [
+        "You wait here on the street for a big vehicle to pick you up.",
+        "This place has a sign and often a small roof for rainy days."
+      ],
+      "def": "a place where people wait for a bus"
+    },
+    {
+      "en": "fear",
+      "zh": "恐惧",
+      "theme": "abstract",
+      "level": "B1",
+      "pos": "noun",
+      "sentences": [
+        "People feel this strong thing when they see a snake or a dark room.",
+        "It makes your heart beat fast when something bad may happen."
+      ],
+      "def": "the bad feeling you have when you are scared"
+    },
+    {
+      "en": "friendship",
+      "zh": "友谊",
+      "theme": "abstract",
+      "level": "B1",
+      "pos": "noun",
+      "sentences": [
+        "This is a close bond between two people who like and help each other.",
+        "It can last for many years, from school days until you are old."
+      ],
+      "def": "a close and kind bond between two people"
+    },
+    {
+      "en": "quiet",
+      "zh": "安静的",
+      "theme": "qualities",
+      "level": "A2",
+      "pos": "adj",
+      "sentences": [
+        "It describes a place with almost no noise.",
+        "You need this in a library, or when a baby is sleeping."
+      ],
+      "def": "making very little noise"
     }
   ]
 }
